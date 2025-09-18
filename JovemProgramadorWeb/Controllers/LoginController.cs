@@ -1,10 +1,17 @@
-﻿using JovemProgramadorWeb.Models;
+﻿using JovemProgramadorWeb.Data.Repositorio.Interfaces;
+using JovemProgramadorWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JovemProgramadorWeb.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly IUsuarioRepositorio _usuarioRepositorio;
+
+        public LoginController(IUsuarioRepositorio usuarioRepositorio)
+        {
+           _usuarioRepositorio = usuarioRepositorio;
+        }
         public IActionResult Index()
         {
             return View();
@@ -13,7 +20,7 @@ namespace JovemProgramadorWeb.Controllers
         public IActionResult ValidaUsuario(Usuario usuario)
         {
             try
-            {
+            {               
                 if(usuario.Email == "katia@gmail" && usuario.Senha == "1234")
                 {
                     return RedirectToAction("Index", "Home");
@@ -30,6 +37,29 @@ namespace JovemProgramadorWeb.Controllers
             }
 
             return View("Index");
+        }
+
+        public IActionResult Cadastro()
+        {
+            return View();
+        }
+
+        public IActionResult CadastrarUsuario(Usuario usuario)
+        {
+            
+            try
+            {
+                _usuarioRepositorio.CadastrarUsuario(usuario);
+                return RedirectToAction("Index", "Login");
+            }
+            catch (Exception e)
+            {
+
+                TempData["MsgErro"] = "Erro ao cadastrar usuário";
+            }
+
+            return View("Index");
+           
         }
 
     }
