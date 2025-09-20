@@ -20,8 +20,10 @@ namespace JovemProgramadorWeb.Controllers
         public IActionResult ValidaUsuario(Usuario usuario)
         {
             try
-            {               
-                if(usuario.Email == "katia@gmail" && usuario.Senha == "1234")
+            {        
+                var retorno = _usuarioRepositorio.ValidarUsuario(usuario);
+
+                if(retorno != null)
                 {
                     return RedirectToAction("Index", "Home");
                 }
@@ -50,6 +52,9 @@ namespace JovemProgramadorWeb.Controllers
             try
             {
                 _usuarioRepositorio.CadastrarUsuario(usuario);
+
+                TempData["MsgOk"] = "Usuário Cadastrado com sucesso!!!";
+
                 return RedirectToAction("Index", "Login");
             }
             catch (Exception e)
