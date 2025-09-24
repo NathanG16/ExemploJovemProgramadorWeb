@@ -29,7 +29,7 @@ namespace JovemProgramadorWeb.Controllers
                 }
                 else
                 {
-                    TempData["MsgErro"] = "Usuário ou senha incorretos!!! Tente novamente...";
+                    TempData["MsgErro"] = "Usuário ou senha incorretos!!! Tente novamente.";
                 }
             }
             catch (Exception)
