@@ -32,7 +32,7 @@ namespace JovemProgramadorWeb.Controllers
                     TempData["MsgErro"] = "Usuário ou senha incorretos!!! Tente novamente.";
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
                 TempData["MsgErro"] = "Erro ao buscar dados do usuário";
