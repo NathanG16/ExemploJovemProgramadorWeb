@@ -11,9 +11,10 @@ namespace JovemProgramadorWeb.Controllers
         {
             _alunoRepositorio = alunoRepositorio;   
         }
-        public IActionResult Index()
+        public IActionResult Index() 
         {
-            return View();
+            var aluno = _alunoRepositorio.BuscarAlunos();
+            return View(aluno);
         }
 
         public IActionResult Adicionar()
@@ -26,15 +27,20 @@ namespace JovemProgramadorWeb.Controllers
             try
             {
                 _alunoRepositorio.CadastrarAluno(aluno);
+
+                TempData["MsgOk"] = "Aluno Cadastrado com sucesso!!!";
+
+                return RedirectToAction("Index", "Aluno");
+            
             }
             catch (Exception e)
             {
 
-                throw;
+                TempData["MsgErro"] = "Erro ao cadastrar Aluno";
             }
            
 
-            return View();
+            return View("Index");
         }
     }
 }

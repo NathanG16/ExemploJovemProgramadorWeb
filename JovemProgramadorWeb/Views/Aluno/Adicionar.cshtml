@@ -28,22 +28,22 @@
 
     <div class="mb-3 col-md-2">
         <label class="form-label">Cep</label>
-        <input type="text" asp-for="Cep" class="form-control ">
+        <input type="text" asp-for="Cep" class="form-control" id="Cep">
     </div>
 
     <div class="mb-3 col-md-2">
         <label class="form-label">Endereco</label>
-        <input type="text" asp-for="Endereco" class="form-control ">
+        <input type="text" asp-for="Endereco" class="form-control" id="Endereco">
     </div>
 
     <div class="mb-3 col-md-2">
         <label class="form-label">Bairro</label>
-        <input type="text" asp-for="Bairro" class="form-control ">
+        <input type="text" asp-for="Bairro" class="form-control" id="Bairro">
     </div>
 
     <div class="mb-3 col-md-2">
         <label class="form-label">Cidade</label>
-        <input type="text" asp-for="Cidade" class="form-control ">
+        <input type="text" asp-for="Cidade" class="form-control" id="Cidade">
     </div>
 
     <div class="mb-3 col-md-2">
@@ -55,3 +55,24 @@
         <a class="btn btn-primary" type="button" asp-controller="Aluno" asp-action="Index"> Voltar</a>
     </div>
 </form>
+
+<script>
+    document.getElementById("Cep").addEventListener("blur", function () {
+        let cep = this.value.replace(/\D/g, ''); // só números
+
+        if (cep.length === 8) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.erro) {
+                        document.getElementById("Endereco").value = data.logradouro || "";
+                        document.getElementById("Bairro").value = data.bairro || "";
+                        document.getElementById("Cidade").value = data.localidade || "";
+                    } else {
+                        alert("CEP não encontrado!");
+                    }
+                })
+                .catch(err => console.error("Erro na consulta:", err));
+        }
+    });
+</script>
