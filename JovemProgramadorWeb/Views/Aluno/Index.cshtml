@@ -1,43 +1,50 @@
-﻿<table class="table">
+﻿@if (TempData["MsgErro"] != null)
+{
+    <div class="alert-danger">
+        @TempData["MsgErro"]
+    </div>
+}
+
+@if (TempData["MsgOk"] != null)
+{
+    <div class="alert-success">
+        @TempData["MsgOk"]
+    </div>
+}
+
+@model List<Aluno>
+
+<table class="table">
     <thead>
         <tr>
-            <th scope="col">Matricula</th>
             <th scope="col">Nome</th>
+            <th scope="col">Matricula</th>
             <th scope="col">Cpf</th>
             <th scope="col">Data de Nascimento</th>
         </tr>
     </thead>
     <tbody>
-
-        <tr>
-            <td>111111</td>
-            <td>AAAAA </td>
-            <td>1212125</td>
-            <td>01/02/1990</td>
-            <td>
-                <div class="d-grid gap-2 d-md-block">
-                    <a type="submit" class="btn btn-primary" role="button" asp-controller="Aluno" asp-action="Editar" >Editar</a>
-                    <a type="submit" class="btn btn-primary" role="button" asp-controller="Aluno" asp-action="Excluir" >Excluir</a>
-                </div>
-            </td>
-        </tr>
-
-        <tr>
-            <td>111111</td>
-            <td>AAAAA </td>
-            <td>1212125</td>
-            <td>02/05/2005</td>
-            <td>
-                <div class="d-grid gap-2 d-md-block">
-                    <a type="submit" class="btn btn-primary" role="button" asp-controller="Aluno" asp-action="Editar">Editar</a>
-                    <a type="submit" class="btn btn-primary" role="button" asp-controller="Aluno" asp-action="Excluir">Excluir</a>
-                </div>
-            </td>
-
-
-
-        </tr>
-        </tbody>
+        @if(Model != null && Model.Any())
+        {
+            foreach(Aluno aluno in Model)
+            {
+                <tr>
+                    <td>@aluno.Nome</td>
+                    <td>@aluno.Matricula</td>
+                    <td>@aluno.Cpf </td>
+                    <td>@aluno.DataNascimento</td>
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <a type="submit" class="btn btn-primary" role="button" asp-controller="Aluno" asp-action="Editar">Editar</a>
+                            <a type="submit" class="btn btn-primary" role="button" asp-controller="Aluno" asp-action="Excluir">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+            
+        }
+        
+     </tbody>
 </table>
 
 <div class="text-center">

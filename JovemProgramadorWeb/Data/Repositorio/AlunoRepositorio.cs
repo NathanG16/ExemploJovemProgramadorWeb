@@ -19,5 +19,10 @@ namespace JovemProgramadorWeb.Data.Repositorio
             _bancoContexto.Aluno.Add(aluno);
             _bancoContexto.SaveChanges();
         }
+
+        public List<Aluno> BuscarAlunos()
+        {
+            return _bancoContexto.Aluno.ToList();
+        }
     }
 }
