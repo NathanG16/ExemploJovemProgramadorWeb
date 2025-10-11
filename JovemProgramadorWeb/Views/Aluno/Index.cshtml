@@ -14,6 +14,15 @@
 
 @model List<Aluno>
 
+<div>
+    <form method="get" asp-controller="Aluno" asp-action="PesquisaAluno">
+        <input type="text" name="buscar" placeholder="Buscar aluno..." class="form-control" style="width:300px; display:inline-block;" />
+        <button type="submit" class="btn btn-primary">Pesquisar</button>
+    </form>
+
+</div>
+
+
 <table class="table">
     <thead>
         <tr>

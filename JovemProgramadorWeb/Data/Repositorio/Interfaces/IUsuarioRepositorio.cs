@@ -4,8 +4,8 @@ namespace JovemProgramadorWeb.Data.Repositorio.Interfaces
 {
     public interface IUsuarioRepositorio
     {
-        public void CadastrarUsuario(Usuario usuario);
+        void CadastrarUsuario(Usuario usuario);
 
-        public Usuario ValidarUsuario(Usuario usuario);
+        Usuario ValidarUsuario(Usuario usuario);
     }
 }
