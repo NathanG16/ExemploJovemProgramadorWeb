@@ -11,8 +11,9 @@ namespace JovemProgramadorWeb.Controllers
         {
             _alunoRepositorio = alunoRepositorio;   
         }
-        public IActionResult Index() 
+        public IActionResult Index(string buscar) 
         {
+
             var aluno = _alunoRepositorio.BuscarAlunos();
             return View(aluno);
         }
@@ -41,6 +42,26 @@ namespace JovemProgramadorWeb.Controllers
            
 
             return View("Index");
+        }
+
+        public IActionResult Edicao(int id)
+        {
+            var aluno = _alunoRepositorio.BuscarId(id);
+            return View(aluno);
+        }
+
+        public IActionResult EditarAluno(Aluno aluno)
+        {
+
+            _alunoRepositorio.EditarAluno(aluno);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult ExcluirAluno(Aluno aluno)
+        {
+
+            _alunoRepositorio.ExcluirAluno(aluno);
+            return RedirectToAction("Index");
         }
     }
 }

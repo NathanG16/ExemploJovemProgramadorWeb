@@ -21,9 +21,9 @@ namespace JovemProgramadorWeb.Controllers
         {
             try
             {        
-                var retorno = _usuarioRepositorio.ValidarUsuario(usuario);
+                var retorno = _usuarioRepositorio.ValidarUsuario(usuario);             
 
-                if(retorno != null)
+                if (retorno != null)
                 {
                     return RedirectToAction("Index", "Home");
                 }

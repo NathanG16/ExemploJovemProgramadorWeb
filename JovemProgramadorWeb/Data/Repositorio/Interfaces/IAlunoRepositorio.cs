@@ -7,5 +7,11 @@ namespace JovemProgramadorWeb.Data.Repositorio.Interfaces
         void CadastrarAluno(Aluno aluno);
 
         List<Aluno> BuscarAlunos();
+
+        void EditarAluno(Aluno aluno);
+
+        void ExcluirAluno(Aluno aluno);
+
+        Aluno BuscarId(int id);
     }
 }

@@ -14,8 +14,6 @@ builder.Services.AddDbContext<BancoContexto>(options => options.UseSqlServer(con
 builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 builder.Services.AddScoped<IAlunoRepositorio, AlunoRepositorio>();
 
-
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -27,6 +25,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
