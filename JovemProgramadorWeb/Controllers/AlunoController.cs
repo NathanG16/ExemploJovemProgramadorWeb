@@ -14,7 +14,18 @@ namespace JovemProgramadorWeb.Controllers
         public IActionResult Index(string buscar) 
         {
 
-            var aluno = _alunoRepositorio.BuscarAlunos();
+            List<Aluno> aluno = new List<Aluno>();
+
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                aluno = _alunoRepositorio.BuscaAlunoPorNome(buscar);
+            }
+            else
+            {
+                aluno = _alunoRepositorio.BuscarAlunos();
+
+            }
+
             return View(aluno);
         }
 

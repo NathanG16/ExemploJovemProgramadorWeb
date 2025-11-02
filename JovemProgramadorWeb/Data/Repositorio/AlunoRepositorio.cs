@@ -41,5 +41,9 @@ namespace JovemProgramadorWeb.Data.Repositorio
         {
             return _bancoContexto.Aluno.FirstOrDefault(x => x.Id == id);
         }
+        public List<Aluno> BuscaAlunoPorNome(string nome)
+        {
+            return _bancoContexto.Aluno.Where(x => x.Nome.Contains(nome)).ToList();
+        }
     }
 }
